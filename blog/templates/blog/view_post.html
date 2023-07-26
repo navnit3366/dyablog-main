@@ -1,0 +1,29 @@
+{% extends "./base.html" %}
+
+{% block title %}
+{{ post.title }} - Dyablog.
+{% endblock %}
+
+{% block content %}
+<div class="relative">
+    <div class="relative bg-gray-200 p-8 rounded-b-xl">
+        <h2 class="text-base font-bold">
+            {% if post.author.first_name %}
+            {{ post.author.first_name }} {{post.author.last_name}}
+            {% else %}
+            <span class="font-mono font-normal uppercase text-gray-200 bg-gray-600 px-4 py-1 rounded">{{ post.author.username }}</span>
+            {% endif %}
+        </h2>
+        <h1 class="text-4xl font-serif font-bold py-4 md:text-5xl">{{ post.title }}</h1>
+        <h3 class="text-gray-600">Published on: <span>{{post.pub_date.date}}</span></h3>
+        {% if perms.blog.change_blogpost %}
+        <a class="absolute bottom-0 right-0 uppercase text-xs font-bold text-gray-200 bg-gray-600 hover:bg-gray-700 m-4 px-4 py-2 rounded" href="edit">Edit Post</a>
+        {% endif %}
+    </div>
+    <div class="prose mx-2 my-8 w-full">
+        {% load editorjs %}
+        {{ post.body|editorjs}}
+    </div>
+</div>
+{% include "./comment_section.html" with comments=post.comments.all %}
+{% endblock %}

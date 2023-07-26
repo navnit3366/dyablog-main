@@ -1,0 +1,24 @@
+<div class="">
+  <div class="relative inline-block h-12 w-full border-box rounded border-2 bg-white {% if field.errors %}border-red-600{% else %}border-gray-500{% endif %} border-opacity-50 mt-2">
+    <input
+      class="peer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full bg-transparent p-2 px-3 text-base focus:outline-none"
+      type="{{ field.field.widget.input_type }}"
+      name="{{ field.name }}"
+      value="{% if field.value %}{{ field.value }}{% endif %}"
+      placeholder=" "
+    />
+    <label
+      class="absolute transition-movinglabel pointer-events-none text-xs top-[0%] z-10 mx-2 inline-block -translate-y-1/2 bg-white px-1 peer-placeholder-shown:top-1/2 peer-placeholder-shown:bg-transparent peer-placeholder-shown:text-base peer-placeholder-shown:opacity-50"
+      for="title"
+      >{{ field.label }}</label
+    >
+  </div>
+
+  {% if field.errors %}
+      <ol class="list-disc list-inside block">
+      {% for error in field.errors %}
+          <li class="text-red-500 text-xs">{{ error|escape }}</li>
+      {% endfor %}
+      </ol>
+  {% endif %}
+</div>

@@ -1,0 +1,50 @@
+<nav
+  class="bg-g sticky top-0 z-10 flex h-14 w-full justify-center overflow-hidden border-b border-b-gray-400 bg-gray-300 bg-opacity-50 backdrop-blur-sm"
+>
+  <div class="relative box-border flex w-11/12 max-w-screen-xl p-4">
+    <a class="mx-2 flex items-center text-xl font-bold" href="/">Dyablog.</a>
+    <div class="mx-2 h-full w-px bg-gray-500"></div>
+
+    <div class="flex w-full justify-between align-center">
+      <div class="inline-flex h-full">
+        <a
+          class="mx-1 font-display font-bold inline-flex h-full items-center rounded px-2 text-sm transition hover:text-orange-600"
+          href="{% url 'blog:index' %}"
+          >Posts</a
+        >
+      </div>
+      <div class="box-border flex items-center w-max">
+        <div class="mx-2 h-full w-px bg-gray-500"></div>
+        {% if user.is_authenticated %}
+        <p
+          class="mx-1 flex font-bold items-center rounded border-gray-400 py-1 text-gray-800 px-2"
+        >
+          {% if user.first_name %}
+          {{ user.first_name }} {{ user.last_name }}
+          {% else %}
+          <span class="font-mono text-sm text-gray-700 rounded bg-gray-300 px-2 py-1">{{ user }}</span>
+          {% endif %}
+        </p>
+        {% if perms.blog.add_blogpost %}
+        <a
+          class="mx-1 flex items-center rounded box-border border border-gray-400 bg-gray-300 drop-shadow-sm text-gray-800 px-2 py-1 text-xs font-bold uppercase transition-position active:scale-95"
+          href="{% url 'blog:new-post' %}"
+          >New Post</a
+        >
+        {% endif %}
+        <a
+          class="mx-1 flex items-center rounded bg-red-400 bg-opacity-50 px-4 py-2 text-xs font-bold uppercase text-red-900 hover:bg-opacity-75"
+          href="{% url 'blog:logout' %}"
+          >Log out</a
+        >
+        {% else %}
+        <a
+        class="mx-1 flex items-center rounded bg-green-500 bg-opacity-25 px-4 py-2 text-xs font-bold uppercase text-green-900 hover:bg-opacity-60"
+        href="{% url 'blog:login' %}"
+        >Login</a
+        >
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>

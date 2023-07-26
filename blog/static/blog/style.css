@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.post-list {
+    position: relative;;
+}
+
+.post-entry {
+    position: relative;
+    display: block;
+    color: #222;
+    overflow: hidden;
+    margin: 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    padding: 16px 32px;
+    background: #0000;
+    border: solid 1px #0004;
+}
+
+.post-entry .title {
+    margin: 0;
+    font-family: 'Roboto Slab', 'Times New Roman', Times, serif;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.post-entry .author {
+    margin: 4px 0;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Roboto', Helvetica, sans-serif;
+}
+
+.post-entry .description {
+    margin: 8px 4px;
+    font-style: italic;
+    color: #444;
+}
+
+.post-entry .edit {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 16px;
+    padding: 8px 12px;
+    background: #0001;
+    border-radius: 4px;
+    color: #222;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+#footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#footer p {
+    color: #0008;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+#footer a {
+    color: inherit;
+    margin: 0 2px;
+}
+
+#footer span {
+    display: inline-block;
+    font-family: 'Roboto Mono', monospace;
+    background: #0002;
+    padding: 2px 6px;
+    margin: 0 4px;
+    border-radius: 2px;
+}

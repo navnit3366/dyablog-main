@@ -1,0 +1,46 @@
+<div>
+  <h2
+    class="flex items-center my-2 border-t border-gray-300 text-gray-900 p-2 font-display text-[12px] font-semibold"
+  >
+    <span class="material-symbols-outlined inline-block text-xs mr-1">chat</span>
+    Comments <span class=" inline-block mx-1 bg-gray-300 px-1.5 rounded text-gray-600 text-[12px]">{{ comments.count }}</span>
+  </h2>
+
+  {% if perms.blog.add_commentpost %}
+  <form
+    class="flex flex-col items-start overflow-hidden rounded border border-gray-300 bg-gray-100"
+    method="post"
+  >
+    {% csrf_token %}
+    <textarea
+      class="w-full bg-transparent p-4 bp-0 text-sm resize-none focus:outline-none transition-size h-24 placeholder-shown:h-12 placeholder-shown:overflow-hidden"
+      name="body"
+      rows="1"
+      maxlength="800"
+      placeholder="Write your comment here"
+    ></textarea>
+    <button
+      class="inline-block rounded m-2 transition-all border-t border-gray-300 bg-gray-600 py-2 px-4 text-left text-xs font-bold uppercase text-gray-100 hover:bg-gray-700"
+    >
+      Submit Comment
+    </button>
+  </form>
+  {% endif %} {% if comments %} {% for comment in comments %}
+  <div class="my-2 rounded bg-slate-200 p-4">
+    <p class="mb-2">
+      {% if comment.author.first_name %}
+      <span class="font-bold">{{comment.author.first_name}} {{comment.author.last_name}}</span>
+      {% else %}
+      <span
+        class="mr-1 rounded bg-gray-800 py-1 px-2 font-mono text-xs font-bold uppercase text-gray-300"
+        >{{comment.author.username}}</span
+      >
+      {% endif %}
+      <span class="text-base text-gray-600">{{comment.timestamp}}</span>
+    </p>
+    <p>{{comment.body}}</p>
+  </div>
+  {% endfor %} {% else %}
+  <p class="text-center my-8 text-gray-600">This post does not yet have any comments.</p>
+  {% endif %}
+</div>

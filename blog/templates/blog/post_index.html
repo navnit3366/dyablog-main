@@ -1,0 +1,30 @@
+{% extends "./base.html" %}
+
+{% block title %}
+Dyablog.
+{% endblock %}
+
+{% block content %}
+    {% if data %}
+    <div class="post-list">
+        {% for post in data %}
+            <a class="post-entry" href="{% url 'blog:post' post.slug %}">
+                <h2 class="author">
+                    {% if post.author.first_name %}
+                    {{ post.author.first_name }} {{post.author.last_name}}
+                    {% else %}
+                    {{ post.author.username }}
+                    {% endif %}
+                </h2>
+                <h1 class="title">{{ post.title }}</h1>
+                <p class="description">{{ post.description }}</p>
+                {% if perms.blog.change_blogpost %}
+                <p class="edit" onclick="window.location='{% url 'blog:post' post.slug %}edit'">Edit Post</p>
+                {% endif %}
+            </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No blogposts found</p>
+    {% endif %}
+{% endblock %}

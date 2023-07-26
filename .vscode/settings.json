@@ -1,0 +1,12 @@
+{
+  "python.analysis.typeCheckingMode": "basic",
+  "python.linting.flake8Enabled": true,
+  "python.linting.mypyEnabled": true,
+  "python.linting.enabled": true,
+  "python.formatting.provider": "black",
+  "[python]": {
+    "editor.rulers": [72, 79],
+    "editor.tabSize": 4,
+  },
+  "editor.tabSize":2
+}

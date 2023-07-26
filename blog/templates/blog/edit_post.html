@@ -1,0 +1,26 @@
+{% extends "./base.html" %}
+
+{% block content %}
+<h1 class="text-4xl font-serif font-bold my-8">
+  {% if post %}
+    Editing "{{post.title}}"
+  {% else %}
+    Writing a new post...
+  {% endif %}
+</h1>
+
+<form method="post">
+
+  {% csrf_token %}
+  {{ form.media }}
+  {% include './material_text_field.html' with field=form.title %}
+  {% include './material_text_field.html' with field=form.description %}
+
+  <div class="flex w-full justify-center">
+    <style>div[data-editorjs-holder] {max-width: none !important;}</style>
+    {{ form.body }}
+  </div>
+  <button type="submit">Save</button>
+</form>
+
+{% endblock %}
